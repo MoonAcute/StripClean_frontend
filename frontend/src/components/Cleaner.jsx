@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Container,
   Typography,
@@ -8,19 +8,19 @@ import {
   Stack,
   Grid,
   Chip,
-} from '@mui/material';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { styled } from '@mui/material/styles';
+} from "@mui/material";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import { styled } from "@mui/material/styles";
 
-const VisuallyHiddenInput = styled('input')({
-  clip: 'rect(0 0 0 0)',
-  clipPath: 'inset(50%)',
+const VisuallyHiddenInput = styled("input")({
+  clip: "rect(0 0 0 0)",
+  clipPath: "inset(50%)",
   height: 1,
-  overflow: 'hidden',
-  position: 'absolute',
+  overflow: "hidden",
+  position: "absolute",
   bottom: 0,
   left: 0,
-  whiteSpace: 'nowrap',
+  whiteSpace: "nowrap",
   width: 1,
 });
 
@@ -41,13 +41,13 @@ function Cleaner() {
     }
 
     const formData = new FormData();
-    formData.append('image', selectedFile);
+    formData.append("image", selectedFile);
 
     try {
       setIsProcessing(true);
       // Replace with your actual backend endpoint for cleaning metadata
-      const response = await fetch('/api/clean', {
-        method: 'POST',
+      const response = await fetch("/clean", {
+        method: "POST",
         body: formData,
       });
 
@@ -73,8 +73,9 @@ function Cleaner() {
           sx={{
             p: { xs: 4, md: 5 },
             borderRadius: 5,
-            border: '1px solid rgba(255,255,255,0.08)',
-            background: 'linear-gradient(135deg, rgba(90,24,154,0.26), rgba(5,6,10,0.95))',
+            border: "1px solid rgba(255,255,255,0.08)",
+            background:
+              "linear-gradient(135deg, rgba(90,24,154,0.26), rgba(5,6,10,0.95))",
           }}
         >
           <Stack spacing={3} alignItems="flex-start">
@@ -83,14 +84,15 @@ function Cleaner() {
               Vaporize hidden metadata from any image.
             </Typography>
             <Typography variant="body1" sx={{ maxWidth: 640 }}>
-              Drag a file or tap upload. StripClean surgically removes GPS trails, device IDs, and
-              forensic breadcrumbs while preserving pixel-perfect fidelity.
+              Drag a file or tap upload. StripClean surgically removes GPS
+              trails, device IDs, and forensic breadcrumbs while preserving
+              pixel-perfect fidelity.
             </Typography>
 
             <Stack
               spacing={2}
-              direction={{ xs: 'column', sm: 'row' }}
-              alignItems={{ xs: 'stretch', sm: 'center' }}
+              direction={{ xs: "column", sm: "row" }}
+              alignItems={{ xs: "stretch", sm: "center" }}
             >
               <Button
                 component="label"
@@ -99,7 +101,11 @@ function Cleaner() {
                 sx={{ minWidth: 220 }}
               >
                 {selectedFile ? selectedFile.name : "Upload image"}
-                <VisuallyHiddenInput type="file" accept="image/*" onChange={handleFileChange} />
+                <VisuallyHiddenInput
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                />
               </Button>
               <Button
                 variant="outlined"
@@ -107,19 +113,19 @@ function Cleaner() {
                 onClick={handleUpload}
                 disabled={!selectedFile || isProcessing}
               >
-                {isProcessing ? 'Processing…' : 'Clean Metadata'}
+                {isProcessing ? "Processing…" : "Clean Metadata"}
               </Button>
             </Stack>
 
             <Grid container spacing={3}>
-              {['EXIF', 'IPTC', 'XMP'].map((tag) => (
+              {["EXIF", "IPTC", "XMP"].map((tag) => (
                 <Grid item xs={12} sm={4} key={tag}>
                   <Paper
                     variant="outlined"
                     sx={{
                       p: 2,
-                      textAlign: 'center',
-                      backgroundColor: 'rgba(30,31,41,0.8)',
+                      textAlign: "center",
+                      backgroundColor: "rgba(30,31,41,0.8)",
                       borderRadius: 3,
                     }}
                   >
@@ -139,7 +145,11 @@ function Cleaner() {
         {cleanedImageUrl && (
           <Paper
             elevation={1}
-            sx={{ p: 4, borderRadius: 4, border: '1px solid rgba(255,255,255,0.1)' }}
+            sx={{
+              p: 4,
+              borderRadius: 4,
+              border: "1px solid rgba(255,255,255,0.1)",
+            }}
           >
             <Typography variant="h5" component="h3" gutterBottom>
               Cleaned image preview
@@ -147,13 +157,21 @@ function Cleaner() {
             <Box
               sx={{
                 borderRadius: 3,
-                overflow: 'hidden',
-                border: '1px solid rgba(255,255,255,0.08)',
+                overflow: "hidden",
+                border: "1px solid rgba(255,255,255,0.08)",
               }}
             >
-              <img src={cleanedImageUrl} alt="Cleaned" style={{ width: '100%', display: 'block' }} />
+              <img
+                src={cleanedImageUrl}
+                alt="Cleaned"
+                style={{ width: "100%", display: "block" }}
+              />
             </Box>
-            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mt: 3 }}>
+            <Stack
+              direction={{ xs: "column", sm: "row" }}
+              spacing={2}
+              sx={{ mt: 3 }}
+            >
               <Button
                 variant="contained"
                 color="primary"
